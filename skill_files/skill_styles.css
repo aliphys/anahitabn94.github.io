@@ -17,6 +17,8 @@
     min-height: 20px;
 }
 body{
+  margin: 0;
+  background-color: rgba(255,247,243,1);
   padding-top: 130px; /* match tabs height */
 }
 

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Yellowtail&family=Segoe+UI&family=Lobster&display=swap");
 
+body {
+  margin: 0;
+  background-color: rgba(255,247,243,1);
+}
+
 
 .tabs {
     display: grid;
@@ -110,46 +115,69 @@
 
 
 #education {
-    display: grid;
-    grid-template-columns: 1fr 15fr 1fr 1fr 8fr 1fr;
     background-color: rgba(255,247,243,1);
-    width: 100%;
-    min-height: 600px;
+  width: 100%;
+  min-height: 0;
     margin: 0;
-    padding: 0;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    top: 0;
-    transform: translateX(-50%);
+  padding: 0;
     box-sizing: border-box;
     color: #222;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+.education-section {
+  width: 100%;
+}
+
+.education-card {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(20px, 3vw, 42px);
+  align-items: center;
+  padding: 30px 24px;
+  box-sizing: border-box;
+}
+
+.education-content {
+  max-width: 760px;
+}
+
+.education-image-wrap {
+  display: flex;
+  justify-content: center;
 }
 
 .education-img {
     width: 100%; 
+  max-width: 400px;
     aspect-ratio: 0.85/1; 
-    display: block;        /* remove inline spacing */
-    margin: 0 auto;        /* optional, center if needed */
+  display: block;
+  margin: 0 auto;
     border-radius: 20px;
     margin-bottom: 20px; 
+  object-fit: cover;
 }
 
 .education-title {
     font-size: 3em;
     margin-bottom: 10px; 
+  text-align: left;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: bold;
 }
 
 .education-description {
     font-size: 1.35em; 
     margin-bottom: 2px;
+  text-align: left;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.4;
 }
 
 .about-button {
+  display: inline-block;
+  text-decoration: none;
     font-family: 'Segoe UI', cursive;
     margin-top: 20px; 
     background-color: #323232; 
@@ -170,8 +198,8 @@
 
 
 @media (max-width: 1100px) {
-  #education {
-    grid-template-columns: 1fr 8fr 1fr; /* Tablet: 2 columns */
+  .education-card {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.95fr);
   }
   .education-title {
     font-size: 4em; 
@@ -187,14 +215,29 @@
 }
 
 @media (max-width: 900px) {
+  .education-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
   .education-title {
     font-size: 3.5em; 
+    text-align: center;
   }
   .education-description {
     font-size: 1.2em; 
+    text-align: center;
+  }
+  .education-img {
+    margin-bottom: 0;
+  }
+  .education-image-wrap {
+    justify-content: center;
   }
   .about-button {
     margin-top: 10px; 
+    margin-left: auto;
+    margin-right: auto;
     font-size: 1.4em;
   }
 }
@@ -218,6 +261,9 @@
   }
   .education-description {
     font-size: 0.9em; 
+  }
+  .education-img {
+    max-width: 300px;
   }
   .about-button {
     margin-top: 10px; 
