@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Yellowtail&family=Segoe+UI&family=Lobster&display=swap");
 
+body {
+  margin: 0;
+  background-color: rgba(255,247,243,1);
+}
+
 
 .tabs {
     display: grid;
@@ -110,38 +115,82 @@
 
 
 
+#top-banner, #greeting {
+    background-color: rgba(255,247,243,1);
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#top-banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+}
+
+.single-cell {
+    grid-template-columns: 1fr;
+}
+
 #greeting {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    background-color: rgba(255,247,243,1);
-    width: 100%;
-    min-height: 600px;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    box-sizing: border-box;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  grid-template-areas:
+    "title title"
+    "content image";
+  align-items: start;
+  align-content: start;
+  column-gap: clamp(1px, 2vw, 22px);
+  row-gap: 14px;
+    min-height: 0;
+  padding: 30px 24px;
     color: #222;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
+
+.greeting-content {
+  grid-area: content;
+  max-width: 680px;
+}
+
 .greeting-title {
+    grid-area: title;
     font-size: 5.5em;
-    margin-bottom: 10px; 
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.03;
 }
 
 .greeting-description {
-    font-size: 1.55em; 
+  display: block;
+  max-width: 40ch;
+  margin: 0;
+  text-align: left;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.55em;
+  line-height: 1.35;
+}
+
+.greeting-image-wrap {
+  grid-area: image;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.greeting-image {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: min(100%, 380px);
+  margin: 24px 0;
+  object-fit: cover;
 }
 
 .about-button {
+    display: inline-block;
     font-family: 'Segoe UI', cursive;
-    margin-top: 50px; 
+  margin-top: 42px;
     background-color: #323232; 
     color: rgba(255, 255, 255, 0.9); 
     border: 2px solid transparent; /* no visible border initially */
@@ -149,6 +198,7 @@
     border-radius: 50px; 
     cursor: pointer;
     font-size: 2em;
+    text-decoration: none;
 }
 
 .about-button:hover {
@@ -161,42 +211,81 @@
 
 @media (max-width: 1100px) {
   #greeting {
-    grid-template-columns: repeat(3, 1fr); /* Tablet: 2 columns */
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.95fr);
+    grid-template-areas:
+      "title title"
+      "content image";
+    min-height: 0;
+    row-gap: 10px;
   }
   .greeting-title {
-    font-size: 4.5em; 
+    font-size: 4.5em;
   }
   .greeting-description {
-    font-size: 1.25em; 
+    font-size: 1.25em;
   }
   .about-button {
-    margin-top: 80px; 
+    margin-top: 36px;
     font-size: 1.6em;
   }
 }
 
 @media (max-width: 900px) {
+  #greeting {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "content"
+      "image";
+    min-height: auto;
+    padding: 20px;
+  }
+  .greeting-image-wrap {
+    justify-content: center;
+  }
+  .greeting-content {
+    justify-self: center;
+    max-width: 640px;
+  }
   .greeting-title {
-    font-size: 3.5em; 
+    font-size: 3.5em;
+    text-align: center;
   }
   .greeting-description {
-    font-size: 1em; 
+    max-width: 44ch;
+    margin: 0 auto;
+    font-size: 1em;
+    text-align: center;
+  }
+  .greeting-image {
+    width: min(100%, 340px);
+    margin: 10px 0 18px 0;
   }
   .about-button {
-    margin-top: 70px; 
+    margin-top: 32px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 1.4em;
   }
 }
 
 @media (max-width: 600px) {
+  #greeting {
+    padding: 16px;
+    gap: 14px;
+  }
   .greeting-title {
-    font-size: 3em; 
+    font-size: 3em;
   }
   .greeting-description {
-    font-size: 0.9em; 
+    font-size: 0.95em;
+  }
+  .greeting-image {
+    width: min(100%, 300px);
   }
   .about-button {
-    margin-top: 60px; 
+    margin-top: 24px;
     font-size: 1.2em;
   }
 }
@@ -378,6 +467,7 @@
 }
 
 .pastel-button {
+  display: inline-block;
     font-family: 'Segoe UI', cursive;
     margin-top: 60px; 
     background-color: #323232; 
@@ -387,6 +477,7 @@
     border-radius: 50px; 
     cursor: pointer;
     font-size: 1.5em;
+    text-decoration: none;
 }
 
 .pastel-button:hover {
